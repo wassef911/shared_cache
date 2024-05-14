@@ -1,0 +1,7 @@
+include pyproject.toml
+include *.md
+include LICENSE
+recursive-include src/shared_cache *.py
+include *.json
+include *.txt
+include *.yaml
