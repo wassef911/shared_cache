@@ -20,7 +20,7 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from typing import Any, Hashable
 import asyncio
-from .models
+from .models import Item
 
 from shared_cache import Cache
 
@@ -64,7 +64,7 @@ To test the `Cache` package, you can use the provided test suite. The tests incl
 
 1. **Run the Tests**:
    ```bash
-   pytest test_between_workers.py
+   pytest tests/test_between_workers.py
    ```
 
 ### Contributing
