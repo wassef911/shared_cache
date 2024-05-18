@@ -1,5 +1,5 @@
 from __future__ import annotations
-
+import collections
 import time
 from multiprocessing.shared_memory import SharedMemory
 from typing import Any
@@ -15,7 +15,7 @@ class CacheItem:
         self.timestamp = timestamp
 
 
-class SharedMemoryBackend:
+class SharedMemoryBackend(collections.abc.MutableMapping[Hashable, Any]):
     _is_creator = False
 
     def __init__(self, maxsize=1024, shm_name="caching_service_memory"):
@@ -105,3 +105,12 @@ class SharedMemoryBackend:
         data = self.data
         data[key] = CacheItem(value, time.time())
         self.data = data
+
+    def __iter__(self):
+        return iter(self.data)
+
+    def __len__(self):
+        return len(self.data)
+
+    def __str__(self):
+        return str(self.data)
